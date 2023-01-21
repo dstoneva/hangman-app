@@ -4,7 +4,7 @@ import '../styles/Gallow.css'
 
 function Gallow() {
   const { wrongGuesses } = useContext(GameContext);
-  return <img className="gallow" alt="gallow" src={require(`../assets/stage${wrongGuesses}.png`)} />;
+  return <img className="gallow" alt="gallow" src={`/assets/stage${wrongGuesses}.png`}/>;
 }
 
 export default Gallow;
