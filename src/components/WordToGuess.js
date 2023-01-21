@@ -15,6 +15,7 @@ const WordToGuess = () => {
       setOutcome("win");
       setGameEnded(true);
     }
+    // eslint-disable-next-line
   }, [usedLetters]);
 
   const maskWord = () => {
