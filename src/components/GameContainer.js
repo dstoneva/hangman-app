@@ -16,7 +16,6 @@ const GameContainer = () => {
   const [correctAnswer, setCorrectAnswer] = useLocalStorage("correctAnswer", "");
   const [wrongGuesses, setWrongGuesses] = useLocalStorage("wrongGuesses", 0);
   const [usedLetters, setUsedLetters] = useLocalStorage("usedLetters", []);
-  const [showModal, setShowModal] = useState(false);
   const [gameEnded, setGameEnded] = useState(false);
   const [outcome, setOutcome] = useLocalStorage("outcome", "");
   const [keys, setKeys] = useLocalStorage("keys", []);
@@ -39,7 +38,6 @@ const GameContainer = () => {
     setWrongGuesses(0);
     setUsedLetters([]);
     setGameEnded(false);
-    setShowModal(false);
     setOutcome("");
     setKeys([]);
   };
@@ -47,14 +45,14 @@ const GameContainer = () => {
     const randomCorrectAnswer = pickRandomCorrectAnswer();
     setCorrectAnswer(randomCorrectAnswer);
     setUsedLetters([randomCorrectAnswer[0], randomCorrectAnswer[randomCorrectAnswer.length - 1]]);
-    let letterCount = randomCorrectAnswer.length * 2 < 12 ? 12 : randomCorrectAnswer.length * 2;
+    const letterCount = randomCorrectAnswer.length * 2 < 12 ? 12 : randomCorrectAnswer.length * 2;
     const strippedCorrectAnswer = [...randomCorrectAnswer].filter(
       (letter) => letter !== randomCorrectAnswer[0] && letter !== randomCorrectAnswer[randomCorrectAnswer.length - 1]
     );
     const allowedLetters = allLetters.filter(
       (letter) => letter !== randomCorrectAnswer[0] && letter !== randomCorrectAnswer[randomCorrectAnswer.length - 1]
     );
-    let letterSet = new Set(strippedCorrectAnswer);
+    const letterSet = new Set(strippedCorrectAnswer);
 
     while (letterSet.size < letterCount && letterSet.size < allLetters.length - 1) {
       letterSet.add(pickRandomElement(allowedLetters));
@@ -66,9 +64,8 @@ const GameContainer = () => {
     if (wrongGuesses === 6) {
       setOutcome("loss");
       setGameEnded(true);
-      setShowModal(true);
     }
-  }, [wrongGuesses, correctAnswer]);
+  }, [wrongGuesses, correctAnswer,setOutcome]);
 
   return (
     <div className="game-container">
