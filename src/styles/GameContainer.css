@@ -1,12 +1,13 @@
 .game-container {
   display: flex;
+  min-height: 100vh;
+  min-height: 100dvh;
   flex-direction: column;
   align-items: center;
-  justify-items: center;
-  margin-top: 30px;
+  justify-content: center;
   margin: 0 auto;
-  border: 0;
   padding: 10px;
+  border: 0;
 }
 
 @media (min-width: 768px) {
